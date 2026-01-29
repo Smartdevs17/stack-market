@@ -4,55 +4,104 @@ import { GovernanceStats } from './components/lending/GovernanceStats';
 import { ProposalList } from './components/lending/ProposalList';
 import { CreateProposalButton } from './components/lending/CreateProposalButton';
 import { CreateProposalModal } from './components/lending/CreateProposalModal';
+import { AuctionList } from './components/market/AuctionList';
+import { CreateAuctionButton } from './components/market/CreateAuctionButton';
+import { CreateAuctionModal } from './components/market/CreateAuctionModal';
+import { LayoutDashboard, ShoppingBag } from 'lucide-react';
+import clsx from 'clsx';
 import './App.css';
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<'lending' | 'market'>('lending');
+  const [isProposalModalOpen, setIsProposalModalOpen] = useState(false);
+  const [isAuctionModalOpen, setIsAuctionModalOpen] = useState(false);
 
   const handleCreateProposal = (title: string, desc: string) => {
     console.log('Creating proposal:', title, desc);
-    // Real logic would interact with smart contract
+  };
+
+  const handleCreateAuction = (item: string, start: number, reserve: number, duration: number) => {
+    console.log('Creating auction:', item, start, reserve, duration);
   };
 
   return (
     <div className="min-h-screen p-8 max-w-7xl mx-auto">
       <header className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-4xl font-bold text-gradient mb-2">StackFarm Governance</h1>
-          <p className="text-secondary">Vote on protocol parameters and upgrades</p>
+          <h1 className="text-4xl font-bold text-gradient mb-2">StackFarm Protocol</h1>
+          <p className="text-secondary text-lg">Integrated DeFi & Supply Chain Dashboard</p>
         </div>
         <div className="flex items-center gap-4">
-          <div className="glass-panel px-4 py-2 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-            <span className="text-sm font-medium">Mainnet Connected</span>
+          <div className="glass-panel px-4 py-2 flex items-center gap-2 border-green-500/30">
+            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
+            <span className="text-sm font-medium text-green-100">Mainnet • Block #84,231</span>
           </div>
         </div>
       </header>
 
-      <GovernanceStats />
-
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <div className="lg:col-span-3">
-          <ProposalList />
-        </div>
-        
-        <div className="lg:col-span-1">
-          <div className="glass-panel p-6 sticky top-8">
-            <h3 className="text-lg font-bold mb-4">Actions</h3>
-            <CreateProposalButton onClick={() => setIsModalOpen(true)} />
-            
-            <div className="mt-6 pt-6 border-t border-white/10">
-              <h4 className="text-sm font-medium text-secondary mb-2">Your Voting Power</h4>
-              <p className="text-3xl font-bold text-primary">1,250 <span className="text-sm text-secondary font-normal">vSTX</span></p>
-            </div>
-          </div>
-        </div>
+      <div className="flex gap-4 mb-8">
+        <button 
+          onClick={() => setActiveTab('lending')}
+          className={clsx("flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all", {
+            "bg-accent text-white shadow-lg": activeTab === 'lending',
+            "glass-panel text-secondary hover:text-white": activeTab !== 'lending'
+          })}
+        >
+          <LayoutDashboard size={20} /> Governance
+        </button>
+        <button 
+          onClick={() => setActiveTab('market')}
+          className={clsx("flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all", {
+            "bg-accent text-white shadow-lg": activeTab === 'market',
+            "glass-panel text-secondary hover:text-white": activeTab !== 'market'
+          })}
+        >
+          <ShoppingBag size={20} /> Marketplace
+        </button>
       </div>
 
+      {activeTab === 'lending' ? (
+        <div className="animate-in fade-in duration-300">
+            <GovernanceStats />
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div className="lg:col-span-3">
+                <ProposalList />
+                </div>
+                <div className="lg:col-span-1">
+                <div className="glass-panel p-6 sticky top-8">
+                    <h3 className="text-lg font-bold mb-4 text-primary">Quick Actions</h3>
+                    <CreateProposalButton onClick={() => setIsProposalModalOpen(true)} />
+                    <div className="mt-6 pt-6 border-t border-white/10">
+                    <h4 className="text-sm font-medium text-secondary mb-2">Your Voting Power</h4>
+                    <p className="text-3xl font-bold text-primary">1,250 <span className="text-sm text-secondary font-normal">vSTX</span></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+      ) : (
+        <div className="animate-in fade-in duration-300">
+            <div className="flex justify-between items-end mb-6">
+                <div>
+                   <h2 className="text-2xl font-bold text-primary mb-1">Dutch Auctions</h2>
+                   <p className="text-secondary text-sm">Prices drop every block until sold.</p>
+                </div>
+                <CreateAuctionButton onClick={() => setIsAuctionModalOpen(true)} />
+            </div>
+            <AuctionList />
+        </div>
+      )}
+
       <CreateProposalModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        isOpen={isProposalModalOpen} 
+        onClose={() => setIsProposalModalOpen(false)} 
         onSubmit={handleCreateProposal} 
+      />
+
+      <CreateAuctionModal
+        isOpen={isAuctionModalOpen}
+        onClose={() => setIsAuctionModalOpen(false)}
+        onSubmit={handleCreateAuction}
       />
     </div>
   );
