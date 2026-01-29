@@ -12,7 +12,9 @@ import { StreamDashboard } from './components/payments/StreamDashboard';
 import { CreateStreamModal } from './components/payments/CreateStreamModal';
 import { BridgeDashboard } from './components/bridge/BridgeDashboard';
 import { ProfileDashboard } from './components/did/ProfileDashboard';
+import { DrillButtons } from './components/DrillButtons';
 import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign, Repeat, User } from 'lucide-react';
+import { submitProposal, createAuction } from './utils/contract-calls'; 
 import clsx from 'clsx';
 import './App.css';
 
@@ -23,14 +25,23 @@ function App() {
   const [isStreamModalOpen, setIsStreamModalOpen] = useState(false);
 
   const handleCreateProposal = (title: string, desc: string) => {
-    console.log('Creating proposal:', title, desc);
+    console.log('Triggering Wallet for Proposal...');
+    submitProposal(title, desc, (data) => {
+        console.log("Proposal TX Broadcast:", data);
+        setIsProposalModalOpen(false);
+    });
   };
 
   const handleCreateAuction = (item: string, start: number, reserve: number, duration: number) => {
-    console.log('Creating auction:', item, start, reserve, duration);
+    console.log('Triggering Wallet for Auction...');
+    createAuction(item, start, (data) => {
+        console.log("Auction TX Broadcast:", data);
+        setIsAuctionModalOpen(false);
+    });
   };
 
   const handleCreateStream = (recipient: string, amount: number, duration: number) => {
+    // Wiring pending for payments, keep mock for now or implement wrapper
     console.log('Creating stream:', recipient, amount, duration);
   };
 
@@ -48,6 +59,8 @@ function App() {
           </div>
         </div>
       </header>
+
+      <DrillButtons />
 
       <div className="flex gap-4 mb-8 overflow-x-auto pb-2">
         <button 
