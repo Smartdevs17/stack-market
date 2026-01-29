@@ -10,12 +10,13 @@ import { CreateAuctionModal } from './components/market/CreateAuctionModal';
 import { PharmaDashboard } from './components/pharma/PharmaDashboard';
 import { StreamDashboard } from './components/payments/StreamDashboard';
 import { CreateStreamModal } from './components/payments/CreateStreamModal';
-import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign } from 'lucide-react';
+import { BridgeDashboard } from './components/bridge/BridgeDashboard';
+import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign, Repeat } from 'lucide-react';
 import clsx from 'clsx';
 import './App.css';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'lending' | 'market' | 'pharma' | 'payments'>('lending');
+  const [activeTab, setActiveTab] = useState<'lending' | 'market' | 'pharma' | 'payments' | 'bridge'>('lending');
   const [isProposalModalOpen, setIsProposalModalOpen] = useState(false);
   const [isAuctionModalOpen, setIsAuctionModalOpen] = useState(false);
   const [isStreamModalOpen, setIsStreamModalOpen] = useState(false);
@@ -84,6 +85,15 @@ function App() {
         >
           <BadgeDollarSign size={20} /> Payments
         </button>
+        <button 
+          onClick={() => setActiveTab('bridge')}
+          className={clsx("flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all whitespace-nowrap", {
+            "bg-orange-600 text-white shadow-lg": activeTab === 'bridge',
+            "glass-panel text-secondary hover:text-white": activeTab !== 'bridge'
+          })}
+        >
+          <Repeat size={20} /> Bridge
+        </button>
       </div>
 
       {activeTab === 'lending' && (
@@ -129,24 +139,15 @@ function App() {
             <div className="flex justify-end mb-4">
                 <button 
                     onClick={() => setIsStreamModalOpen(true)}
-                    className="hidden" // Handled inside Dashboard, but specific modal trigger could be here
+                    className="hidden" 
                 ></button>
             </div>
-            {/* We pass a custom trigger or handle modal state inside Dashboard? 
-                Actually StreamDashboard has its own button. 
-                Ideally we lift the button up or pass the handler down. 
-                For simplicity in this blitz, let's wrap StreamDashboard or just let it be. 
-                Wait, StreamDashboard has a "Create New Stream" button that does nothing? 
-                I should pass `onCreate={() => setIsStreamModalOpen(true)}` to StreamDashboard.
-                I need to update StreamDashboard props... or just hack it: 
-                Let's overlay the modal here and assume `StreamDashboard` is purely visual for now 
-                OR update StreamDashboard next commit. 
-                Actually, simpler: Just show StreamDashboard. The modal exists but isn't triggered?
-                The Dashboard has a button. I probably didn't wire it up in Dashboard.
-                Let's adding `onCreate` prop to StreamDashboard would be a good next commit! 
-            */}
             <StreamDashboard />
          </div>
+      )}
+
+      {activeTab === 'bridge' && (
+         <BridgeDashboard />
       )}
 
       <CreateProposalModal 
@@ -164,7 +165,7 @@ function App() {
       <CreateStreamModal 
         isOpen={isStreamModalOpen}
         onClose={() => setIsStreamModalOpen(false)}
-        onSubmit={handleCreateStream}
+        onSubmit={handleCreateStream} 
       />
     </div>
   );
