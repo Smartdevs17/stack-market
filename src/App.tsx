@@ -11,12 +11,13 @@ import { PharmaDashboard } from './components/pharma/PharmaDashboard';
 import { StreamDashboard } from './components/payments/StreamDashboard';
 import { CreateStreamModal } from './components/payments/CreateStreamModal';
 import { BridgeDashboard } from './components/bridge/BridgeDashboard';
-import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign, Repeat } from 'lucide-react';
+import { ProfileDashboard } from './components/did/ProfileDashboard';
+import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign, Repeat, User } from 'lucide-react';
 import clsx from 'clsx';
 import './App.css';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'lending' | 'market' | 'pharma' | 'payments' | 'bridge'>('lending');
+  const [activeTab, setActiveTab] = useState<'lending' | 'market' | 'pharma' | 'payments' | 'bridge' | 'profile'>('lending');
   const [isProposalModalOpen, setIsProposalModalOpen] = useState(false);
   const [isAuctionModalOpen, setIsAuctionModalOpen] = useState(false);
   const [isStreamModalOpen, setIsStreamModalOpen] = useState(false);
@@ -94,6 +95,15 @@ function App() {
         >
           <Repeat size={20} /> Bridge
         </button>
+        <button 
+          onClick={() => setActiveTab('profile')}
+          className={clsx("flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all whitespace-nowrap", {
+            "bg-purple-600 text-white shadow-lg": activeTab === 'profile',
+            "glass-panel text-secondary hover:text-white": activeTab !== 'profile'
+          })}
+        >
+          <User size={20} /> Identity
+        </button>
       </div>
 
       {activeTab === 'lending' && (
@@ -148,6 +158,10 @@ function App() {
 
       {activeTab === 'bridge' && (
          <BridgeDashboard />
+      )}
+
+      {activeTab === 'profile' && (
+         <ProfileDashboard />
       )}
 
       <CreateProposalModal 
