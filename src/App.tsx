@@ -7,12 +7,13 @@ import { CreateProposalModal } from './components/lending/CreateProposalModal';
 import { AuctionList } from './components/market/AuctionList';
 import { CreateAuctionButton } from './components/market/CreateAuctionButton';
 import { CreateAuctionModal } from './components/market/CreateAuctionModal';
-import { LayoutDashboard, ShoppingBag } from 'lucide-react';
+import { PharmaDashboard } from './components/pharma/PharmaDashboard';
+import { LayoutDashboard, ShoppingBag, Truck } from 'lucide-react';
 import clsx from 'clsx';
 import './App.css';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'lending' | 'market'>('lending');
+  const [activeTab, setActiveTab] = useState<'lending' | 'market' | 'pharma'>('lending');
   const [isProposalModalOpen, setIsProposalModalOpen] = useState(false);
   const [isAuctionModalOpen, setIsAuctionModalOpen] = useState(false);
 
@@ -58,9 +59,18 @@ function App() {
         >
           <ShoppingBag size={20} /> Marketplace
         </button>
+        <button 
+          onClick={() => setActiveTab('pharma')}
+          className={clsx("flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all", {
+            "bg-accent text-white shadow-lg": activeTab === 'pharma',
+            "glass-panel text-secondary hover:text-white": activeTab !== 'pharma'
+          })}
+        >
+          <Truck size={20} /> Supply Chain
+        </button>
       </div>
 
-      {activeTab === 'lending' ? (
+      {activeTab === 'lending' && (
         <div className="animate-in fade-in duration-300">
             <GovernanceStats />
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -79,7 +89,9 @@ function App() {
                 </div>
             </div>
         </div>
-      ) : (
+      )}
+      
+      {activeTab === 'market' && (
         <div className="animate-in fade-in duration-300">
             <div className="flex justify-between items-end mb-6">
                 <div>
@@ -90,6 +102,10 @@ function App() {
             </div>
             <AuctionList />
         </div>
+      )}
+
+      {activeTab === 'pharma' && (
+         <PharmaDashboard />
       )}
 
       <CreateProposalModal 
