@@ -32,7 +32,7 @@ function App() {
     });
   };
 
-  const handleCreateAuction = (item: string, start: number, reserve: number, duration: number) => {
+  const handleCreateAuction = (item: string, start: number, _reserve: number, _duration: number) => {
     console.log('Triggering Wallet for Auction...');
     createAuction(item, start, (data) => {
         console.log("Auction TX Broadcast:", data);

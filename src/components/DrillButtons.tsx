@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { pingNetwork } from '../../utils/contract-calls';
+import { pingNetwork } from '../utils/contract-calls';
 import { Activity, Radio } from 'lucide-react';
 
 export const DrillButtons: React.FC = () => {
@@ -8,7 +8,7 @@ export const DrillButtons: React.FC = () => {
 
     const handlePing = () => {
         setStatus('Broadcasting Ping...');
-        pingNetwork('Hello Stacks!', (data) => {
+        pingNetwork('Hello Stacks!', (data: any) => {
             console.log('Ping Success:', data);
             setStatus(`Ping Sent! TX: ${data.txId}`);
             setTimeout(() => setStatus('Ready'), 3000);

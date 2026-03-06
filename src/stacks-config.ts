@@ -1,8 +1,8 @@
 
-import { StacksTestnet } from '@stacks/network';
+import { STACKS_TESTNET } from '@stacks/network';
 
 // Global Network Config
-export const network = new StacksTestnet();
+export const network = STACKS_TESTNET;
 
 // Contract Addresses (Mocked / Testnet)
 // In a real scenario, these would come from environment variables or a registry

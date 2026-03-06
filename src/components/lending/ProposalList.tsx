@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { ProposalItem, Proposal } from './ProposalItem';
+import { ProposalItem } from './ProposalItem';
+import type { Proposal } from './ProposalItem';
 
 // Mock Data
 const MOCK_PROPOSALS: Proposal[] = [

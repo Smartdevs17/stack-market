@@ -1,15 +1,14 @@
 
 import { openContractCall } from '@stacks/connect';
-import { StacksTestnet } from '@stacks/network';
+import { STACKS_TESTNET } from '@stacks/network';
 import { 
     PostConditionMode, 
     uintCV, 
-    stringAsciiCV,
-    standardPrincipalCV
+    stringAsciiCV
 } from '@stacks/transactions';
 import { CONTRACTS, MICRO_STX_AMOUNT } from '../stacks-config';
 
-const testnet = new StacksTestnet();
+const testnet = STACKS_TESTNET;
 
 // Generic Wrapper
 interface CallProps {
@@ -57,7 +56,7 @@ export const submitProposal = async (title: string, desc: string, onFinish: (dat
     });
 };
 
-export const createAuction = async (item: string, startPrice: number, onFinish: (data: any) => void) => {
+export const createAuction = async (_item: string, startPrice: number, onFinish: (data: any) => void) => {
     await callContract({
         contractAddress: CONTRACTS.MARKET.address,
         contractName: CONTRACTS.MARKET.name,

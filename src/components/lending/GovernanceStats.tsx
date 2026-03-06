@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Vote, Users, Activity } from 'lucide-react';
-import clsx from 'clsx';
 
 interface StatProps {
   label: string;

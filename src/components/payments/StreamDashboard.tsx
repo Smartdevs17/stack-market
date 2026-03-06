@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { PlayCircle, StopCircle, RefreshCw, BadgeDollarSign } from 'lucide-react';
 
 interface Stream {
