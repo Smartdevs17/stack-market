@@ -1,15 +1,7 @@
-
 import React, { useState } from 'react';
 import { pingNetwork } from '../utils/contract-calls';
 import { Activity, Radio } from 'lucide-react';
-
-// Assuming NETWORK_LABEL and testNetwork are defined elsewhere or need to be added.
-// For the purpose of this edit, I will assume testNetwork is the new name for pingNetwork
-// and NETWORK_LABEL needs to be defined.
-// Also, setLoading and setResult state variables need to be added.
-
-// Placeholder for NETWORK_LABEL, you might want to define this globally or pass as prop
-const NETWORK_LABEL = "Stacks Mainnet"; // Or "Stacks Testnet", etc.
+import { NETWORK_LABEL } from '../stacks-config';
 
 export const DrillButtons: React.FC = () => {
     const [status, setStatus] = useState<string>('Ready');
@@ -22,13 +14,11 @@ export const DrillButtons: React.FC = () => {
         setResult(''); // Clear previous result
         console.log(`[DrillButtons] Pinging network: ${NETWORK_LABEL}`);
         try {
-            // Assuming testNetwork is the new function to call, replacing the old pingNetwork
-            // If pingNetwork from contract-calls is still used, the signature needs to match.
-            // For this edit, I'm adapting to the provided snippet's structure.
-            // If the original pingNetwork from contract-calls is async and returns a promise,
-            // then `await pingNetwork('Hello Stacks!')` would be appropriate.
-            // Given the snippet, it seems `testNetwork()` is expected to be an async call.
-            const data: any = await pingNetwork('Hello Stacks!'); // Using the imported pingNetwork, assuming it's now async
+            // Using a Promise-wrapped version of the callback-based pingNetwork
+            const data: any = await new Promise((resolve, reject) => {
+                pingNetwork('Hello Stacks!', (res) => resolve(res));
+                setTimeout(() => reject(new Error('Timeout')), 10000);
+            });
             console.log("[DrillButtons] Network response successful:", data);
             setStatus(`Ping Sent! TX: ${data.txId}`);
             setResult(`Success: Block Height ${data.tip_height || 'N/A'}`); // Assuming data might have tip_height
@@ -59,11 +49,21 @@ export const DrillButtons: React.FC = () => {
                  <p className="text-xs text-secondary font-mono mr-2">{status}</p>
                  <button 
                     onClick={handlePing}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all font-medium text-sm"
+                    disabled={loading}
+                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all font-medium text-sm ${
+                        loading ? 'bg-blue-600/50 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                    } text-white`}
                  >
-                    <Radio size={16} /> Ping Network
+                    <Radio size={16} className={loading ? 'animate-pulse' : ''} /> 
+                    {loading ? 'Pinging...' : 'Ping Network'}
                  </button>
             </div>
+            
+            {result && (
+                <div className="absolute -bottom-6 right-0 text-[10px] font-mono text-accent animate-in fade-in slide-in-from-top-1">
+                    {result}
+                </div>
+            )}
         </div>
     );
 };

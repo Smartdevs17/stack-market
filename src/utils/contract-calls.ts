@@ -1,14 +1,11 @@
 
 import { openContractCall } from '@stacks/connect';
-import { STACKS_TESTNET } from '@stacks/network';
 import { 
     PostConditionMode, 
     uintCV, 
     stringAsciiCV
 } from '@stacks/transactions';
-import { CONTRACTS, MICRO_STX_AMOUNT } from '../stacks-config';
-
-const testnet = STACKS_TESTNET;
+import { CONTRACTS, MICRO_STX_AMOUNT, NETWORK } from '../stacks-config';
 
 // Generic Wrapper
 interface CallProps {
@@ -25,7 +22,7 @@ export const callContract = async ({ contractAddress, contractName, functionName
         contractName,
         functionName,
         functionArgs,
-        network: testnet,
+        network: NETWORK,
         postConditionMode: PostConditionMode.Allow, // For dev speed; in prod use Deny
         onFinish,
     };
@@ -34,7 +31,7 @@ export const callContract = async ({ contractAddress, contractName, functionName
 
 // Test network connection and get tip height
 export async function testNetwork(): Promise<any> {
-    const response = await fetch(`${NETWORK.getCoreApiUrl()}/v2/info`);
+    const response = await fetch(`${NETWORK.coreApiUrl}/v2/info`);
     return response.json();
 }
 
