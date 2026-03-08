@@ -1,4 +1,7 @@
-
+/**
+ * GovernanceStats component displays high-level metrics for the DAO
+ * including active proposals, total votes, and membership count.
+ */
 import React from 'react';
 import { Vote, Users, Activity } from 'lucide-react';
 
