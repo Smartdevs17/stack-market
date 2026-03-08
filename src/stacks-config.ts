@@ -2,7 +2,8 @@
 import { STACKS_TESTNET } from '@stacks/network';
 
 // Global Network Config
-export const network = STACKS_TESTNET;
+export const NETWORK = STACKS_TESTNET;
+export const NETWORK_LABEL = 'Stacks Testnet';
 
 // Contract Addresses (Mocked / Testnet)
 // In a real scenario, these would come from environment variables or a registry
