@@ -32,6 +32,12 @@ export const callContract = async ({ contractAddress, contractName, functionName
     await openContractCall(options);
 };
 
+// Test network connection and get tip height
+export async function testNetwork(): Promise<any> {
+    const response = await fetch(`${NETWORK.getCoreApiUrl()}/v2/info`);
+    return response.json();
+}
+
 // --- Specific Action Wrappers ---
 
 export const pingNetwork = async (message: string, onFinish: (data: any) => void) => {
