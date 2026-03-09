@@ -3,7 +3,7 @@
  * Users can track progress, status, and claim available funds.
  */
 import React from 'react';
-import { PlayCircle, StopCircle, RefreshCw, BadgeDollarSign } from 'lucide-react';
+import { StatusBadge } from '../common/StatusBadge';
 
 interface Stream {
     id: number;
@@ -40,13 +40,7 @@ export const StreamDashboard: React.FC = () => {
                      <div key={stream.id} className="glass-panel p-6 flex items-center justify-between">
                         <div className="flex-1">
                             <div className="flex items-center gap-3 mb-2">
-                                <span className={`px-2 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider ${
-                                    stream.status === 'flowing' ? 'bg-green-500/20 text-green-400' :
-                                    stream.status === 'paused' ? 'bg-yellow-500/20 text-yellow-400' :
-                                    'bg-blue-500/20 text-blue-400'
-                                }`}>
-                                    {stream.status}
-                                </span>
+                                <StatusBadge status={stream.status} />
                                 <h4 className="text-lg font-bold text-primary">Stream #{stream.id}</h4>
                             </div>
                             <p className="text-secondary text-sm font-mono">{stream.recipient} • {stream.rate}</p>
