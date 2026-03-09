@@ -16,6 +16,7 @@ import { DrillButtons } from './components/DrillButtons';
 import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign, Repeat, User, Sun, Moon } from 'lucide-react';
 import { submitProposal, createAuction } from './utils/contract-calls'; 
 import clsx from 'clsx';
+import logo from './assets/logo.png';
 import './App.css';
 
 function App() {
@@ -51,9 +52,12 @@ function App() {
   return (
     <div className="min-h-screen p-8 max-w-7xl mx-auto">
       <header className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-4xl font-bold text-gradient mb-2">StackFarm Protocol</h1>
-          <p className="text-secondary text-lg">Integrated DeFi & Supply Chain Dashboard</p>
+        <div className="flex items-center gap-4">
+          <img src={logo} alt="Stack Market Logo" className="w-12 h-12 rounded-2xl shadow-xl shadow-blue-500/10" />
+          <div>
+            <h1 className="text-4xl font-extrabold text-gradient">StackFarm</h1>
+            <p className="text-secondary text-sm font-medium tracking-tight">Integrated DeFi & Supply Chain Protocol</p>
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <button 
