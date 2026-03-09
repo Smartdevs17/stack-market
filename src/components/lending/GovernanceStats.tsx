@@ -12,12 +12,12 @@ interface StatProps {
 }
 
 const StatCard: React.FC<StatProps> = ({ label, value, icon }) => (
-  <div className="glass-panel p-4 flex items-center justify-between">
+  <div className="glass-panel p-6 flex items-center justify-between hover:scale-[1.02] active:scale-[0.98]">
     <div>
-      <p className="text-secondary text-sm font-medium">{label}</p>
-      <h3 className="text-primary text-2xl font-bold mt-1 text-gradient">{value}</h3>
+      <p className="text-secondary text-xs font-bold uppercase tracking-wider mb-1">{label}</p>
+      <h3 className="text-primary text-3xl font-extrabold text-gradient">{value}</h3>
     </div>
-    <div className="p-3 bg-white/5 rounded-lg text-accent">
+    <div className="p-4 bg-blue-500/10 rounded-2xl text-accent shadow-inner">
       {icon}
     </div>
   </div>
