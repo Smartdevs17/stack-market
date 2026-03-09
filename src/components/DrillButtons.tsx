@@ -50,11 +50,9 @@ export const DrillButtons: React.FC = () => {
                  <button 
                     onClick={handlePing}
                     disabled={loading}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all font-medium text-sm ${
-                        loading ? 'bg-blue-600/50 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
-                    } text-white`}
+                    className="btn-premium"
                  >
-                    <Radio size={16} className={loading ? 'animate-pulse' : ''} /> 
+                    <Radio size={18} className={loading ? 'animate-pulse' : ''} /> 
                     {loading ? 'Pinging...' : 'Ping Network'}
                  </button>
             </div>
