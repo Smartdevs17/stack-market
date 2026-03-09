@@ -25,7 +25,7 @@ export default defineConfig([
 
       // Remove tseslint.configs.recommended and replace with this
       tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use# Stack Farm - Frontend Dashboard
+      // Alternatively, use# Stack Market - Frontend Dashboard
 
 This project is a React-based dashboard built with Vite, Tailwind CSS, and the Stacks SDK. It provides a premium interface for interacting with the Stack Farm protocol.
 

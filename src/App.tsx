@@ -55,8 +55,8 @@ function App() {
         <div className="flex items-center gap-4">
           <img src={logo} alt="Stack Market Logo" className="w-12 h-12 rounded-2xl shadow-xl shadow-blue-500/10" />
           <div>
-            <h1 className="text-4xl font-extrabold text-gradient">StackFarm</h1>
-            <p className="text-secondary text-sm font-medium tracking-tight">Integrated DeFi & Supply Chain Protocol</p>
+            <h1 className="text-4xl font-extrabold text-gradient">Stack Market</h1>
+            <p className="text-secondary text-sm font-medium tracking-tight">Decentralized Asset & Auction Protocol</p>
           </div>
         </div>
         <div className="flex items-center gap-4">

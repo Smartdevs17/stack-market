@@ -1,7 +1,7 @@
 export const UI_STRINGS = {
   DASHBOARD: {
-    TITLE: "Protocol Dashboard",
-    SUBTITLE: "Real-time overview of the Stack Farm ecosystem.",
+    TITLE: "Stack Market Dashboard",
+    SUBTITLE: "Real-time overview of the Stack Market ecosystem.",
   },
   PAYMENTS: {
     TITLE: "Payment Streams",
