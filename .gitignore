@@ -23,6 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-.envnode_modules/
+node_modules/
 .env
+.vercel/
+*.local
 .vercel
