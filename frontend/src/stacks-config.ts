@@ -1,41 +1,24 @@
-
-import { STACKS_TESTNET } from '@stacks/network';
+import { STACKS_MAINNET } from '@stacks/network';
 
 // Global Network Config
-export const NETWORK = STACKS_TESTNET;
-export const NETWORK_LABEL = 'Stacks Testnet';
+export const NETWORK = STACKS_MAINNET;
+export const NETWORK_LABEL = 'Stacks Mainnet';
 
-// Contract Addresses (Mocked / Testnet)
-// In a real scenario, these would come from environment variables or a registry
-const CONTRACT_DEPLOYER = 'ST1PQ24CH0EKEDT2R3S6A7D9D99N6B0X7FR05624W';
+// Contract Addresses (Mainnet)
+const CONTRACT_DEPLOYER = 'SP9AS5B36MKC0FVF4DE75A1EBPANXQ14AEH98BH0';
 
 export const CONTRACTS = {
-    LENDING: {
+    TOKEN: {
         address: CONTRACT_DEPLOYER,
-        name: 'lending-pool-v3',
+        name: 'token-v10',
     },
     MARKET: {
         address: CONTRACT_DEPLOYER,
         name: 'marketplace-v3',
     },
-    PHARMA: {
+    LENDING: {
         address: CONTRACT_DEPLOYER,
-        name: 'drug-tracking-v3',
-    },
-    PAYMENTS: {
-        address: CONTRACT_DEPLOYER,
-        name: 'payment-escrow-v3',
-    },
-    BRIDGE: {
-        IN: { address: CONTRACT_DEPLOYER, name: 'btc-peg-in-v1' },
-        OUT: { address: CONTRACT_DEPLOYER, name: 'btc-peg-out-v1' },
-    },
-    DID: {
-        REGISTRY: { address: CONTRACT_DEPLOYER, name: 'identity-provider-v1' },
-        SCORING: { address: CONTRACT_DEPLOYER, name: 'reputation-score-v1' },
-    },
-    UTILS: {
-        GEN: { address: CONTRACT_DEPLOYER, name: 'transaction-gen-v1' },
+        name: 'governance-v5',
     }
 };
 
