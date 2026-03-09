@@ -9,7 +9,7 @@
 - **/docs**: Technical documentation and protocol specifications.
 
 ## 🚀 Live Access
-- **Live Dashboard**: [https://stack-farm-frontend.vercel.app/](https://stack-farm-frontend.vercel.app/)
+- **Live Dashboard**: [https://stack-market.vercel.app](https://stack-market.vercel.app)
 - **GitHub Repository**: [https://github.com/Smartdevs17/stack-market](https://github.com/Smartdevs17/stack-market)
 
 ## 🛠 Tech Stack
