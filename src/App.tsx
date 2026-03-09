@@ -140,8 +140,16 @@ function App() {
                     <h3 className="text-lg font-bold mb-4 text-primary">Quick Actions</h3>
                     <CreateProposalButton onClick={() => setIsProposalModalOpen(true)} />
                     <div className="mt-6 pt-6 border-t border-white/10">
-                    <h4 className="text-sm font-medium text-secondary mb-2">Your Voting Power</h4>
-                    <p className="text-3xl font-bold text-primary">1,250 <span className="text-sm text-secondary font-normal">vSTX</span></p>
+                    <div className="mt-6 pt-6 border-t border-white/10">
+                      <h4 className="text-sm font-medium text-secondary mb-4">Quick Resources</h4>
+                      <div className="flex flex-col gap-2">
+                        <a href="https://explorer.hiro.so" target="_blank" className="text-xs text-accent hover:underline flex items-center gap-1">
+                          Hiro Explorer <LayoutDashboard size={10} />
+                        </a>
+                        <a href="https://docs.stacks.co" target="_blank" className="text-xs text-accent hover:underline flex items-center gap-1">
+                          Stacks Documentation <LayoutDashboard size={10} />
+                        </a>
+                      </div>
                     </div>
                 </div>
                 </div>
