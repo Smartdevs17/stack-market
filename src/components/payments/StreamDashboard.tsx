@@ -1,8 +1,4 @@
-/**
- * StreamDashboard provides a visual overview of active STX/BTC payment streams.
- * Users can track progress, status, and claim available funds.
- */
-import React from 'react';
+import { PlayCircle, StopCircle, RefreshCw, BadgeDollarSign } from 'lucide-react';
 import { StatusBadge } from '../common/StatusBadge';
 
 interface Stream {
