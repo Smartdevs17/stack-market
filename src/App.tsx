@@ -13,7 +13,7 @@ import { CreateStreamModal } from './components/payments/CreateStreamModal';
 import { BridgeDashboard } from './components/bridge/BridgeDashboard';
 import { ProfileDashboard } from './components/did/ProfileDashboard';
 import { DrillButtons } from './components/DrillButtons';
-import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign, Repeat, User } from 'lucide-react';
+import { LayoutDashboard, ShoppingBag, Truck, BadgeDollarSign, Repeat, User, Sun, Moon } from 'lucide-react';
 import { submitProposal, createAuction } from './utils/contract-calls'; 
 import clsx from 'clsx';
 import './App.css';
@@ -23,6 +23,9 @@ function App() {
   const [isProposalModalOpen, setIsProposalModalOpen] = useState(false);
   const [isAuctionModalOpen, setIsAuctionModalOpen] = useState(false);
   const [isStreamModalOpen, setIsStreamModalOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   const handleCreateProposal = (title: string, desc: string) => {
     console.log('Triggering Wallet for Proposal...');
@@ -53,6 +56,12 @@ function App() {
           <p className="text-secondary text-lg">Integrated DeFi & Supply Chain Dashboard</p>
         </div>
         <div className="flex items-center gap-4">
+          <button 
+            onClick={toggleDarkMode}
+            className="glass-panel p-2.5 text-secondary hover:text-white"
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
           <div className="glass-panel px-4 py-2 flex items-center gap-2 border-green-500/30">
             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
             <span className="text-sm font-medium text-green-100">Mainnet • Block #84,231</span>
