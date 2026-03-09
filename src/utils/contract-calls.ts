@@ -16,6 +16,10 @@ interface CallProps {
     onFinish: (data: any) => void;
 }
 
+/**
+ * Generic wrapper for executing a Stacks contract call via @stacks/connect.
+ * @param props - Object containing contract and function details.
+ */
 export const callContract = async ({ contractAddress, contractName, functionName, functionArgs, onFinish }: CallProps) => {
     const options = {
         contractAddress,
@@ -30,6 +34,10 @@ export const callContract = async ({ contractAddress, contractName, functionName
 };
 
 // Test network connection and get tip height
+/**
+ * Pings the Stacks node to verify network connectivity and retrieve the current tip height.
+ * @returns A promise resolving to the network info JSON.
+ */
 export async function testNetwork(): Promise<any> {
     const response = await fetch(`${(NETWORK as any).coreApiUrl}/v2/info`);
     return response.json();
@@ -37,6 +45,11 @@ export async function testNetwork(): Promise<any> {
 
 // --- Specific Action Wrappers ---
 
+/**
+ * Generates a dummy 'ping' transaction on-chain for network verification.
+ * @param message - The message to include in the ping.
+ * @param onFinish - Callback function executed after the transaction is broadcasted.
+ */
 export const pingNetwork = async (message: string, onFinish: (data: any) => void) => {
     await callContract({
         contractAddress: CONTRACTS.UTILS.GEN.address,
