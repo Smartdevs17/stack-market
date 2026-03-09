@@ -3,7 +3,10 @@ import { pingNetwork } from '../utils/contract-calls';
 import { Activity, Radio } from 'lucide-react';
 import { NETWORK_LABEL } from '../stacks-config';
 
+import { useNetworkStatus } from '../hooks/useNetworkStatus';
+
 export const DrillButtons: React.FC = () => {
+    const { blockHeight, isConnected } = useNetworkStatus();
     const [status, setStatus] = useState<string>('Ready');
     const [loading, setLoading] = useState<boolean>(false); // New state for loading
     const [result, setResult] = useState<string>(''); // New state for result message
@@ -41,7 +44,9 @@ export const DrillButtons: React.FC = () => {
                 </div>
                 <div>
                     <h3 className="text-lg font-bold text-white">Network Diagnostics</h3>
-                    <p className="text-sm text-secondary">Generate micro-transactions to keep the chain active.</p>
+                    <p className="text-sm text-secondary">
+                        {isConnected ? `Connected to Mainnet • Block #${blockHeight.toLocaleString()}` : 'Connecting to Stacks...'}
+                    </p>
                 </div>
             </div>
 
