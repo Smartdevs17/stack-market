@@ -3,7 +3,7 @@
 This project is a React-based dashboard built with Vite, Tailwind CSS, and the Stacks SDK. It provides a premium interface for interacting with the Stack Market protocol.
 
 ## 📁 Architecture & Organization
-- `/src/components`: UI components organized by feature (Lending, Payments, Market).
+- `/src/components`: UI components for the **Dutch Auction Marketplace**.
 - `/src/utils`: Common utility functions and Stacks SDK wrappers.
 - `/src/hooks`: Custom React hooks for network and state management.
 - `/src/assets`: Design tokens, global styles, and static assets.
